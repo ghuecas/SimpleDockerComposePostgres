@@ -1,0 +1,26 @@
+# Use postgres/example user/password credentials
+version: '3'
+
+services:
+
+  db:
+    image: postgres:9.6
+    restart: always
+    volumes:
+      - dbdataciencias:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_DB: ciencias
+      POSTGRES_USER: ciencias
+      POSTGRES_PASSWORD: 123secret
+      LANG: C.UTF-8
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  dbdataciencias:
+
